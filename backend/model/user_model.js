@@ -26,7 +26,8 @@ const userSchema = mongoose.Schema(
   },
   {
     timestamps: true,
-  }
+  },
+  { versionKey: false }
 );
 
 const UserModel = mongoose.model("User", userSchema);

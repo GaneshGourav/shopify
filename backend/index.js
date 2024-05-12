@@ -1,16 +1,40 @@
 require("dotenv").config();
+const cors = require("cors");
 const express = require("express");
 const { connection } = require("./config/db");
+const { userRouter } = require("./routes/user_routes");
+const { adminRouter } = require("./routes/admin_routes");
+const { productRouter } = require("./routes/product_routes");
+const { authorizedMiddleware } = require("./middleware/authorizedMiddleware");
+const { cartRouter } = require("./routes/cart_routes");
+const { orderRouter } = require("./routes/order_routes");
+const { WishlistRouter } = require("./routes/wishlist_routes");
 
 const app = express();
+app.use(cors());
+app.use(express.json());
+
+// Home Route
 
 app.get("/", (req, res) => {
   res.send("Welcome to Shopify");
 });
 
+// All Routes
+app.use("/user", userRouter);
+app.use("/admin", adminRouter);
+app.use("/product", productRouter);
+app.use("/cart", authorizedMiddleware, cartRouter);
+app.use("/order", orderRouter);
+app.use("/wishlist", authorizedMiddleware, WishlistRouter);
+
+// Not Found Route
+
 app.use((req, res) => {
   res.status(404).send("Route not found");
 });
+
+// App Runnning routes
 
 app.listen(process.env.PORT, async () => {
   try {
