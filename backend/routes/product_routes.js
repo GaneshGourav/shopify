@@ -10,10 +10,10 @@ const {
 const { adminMiddleware } = require("../middleware/adminMiddleware");
 
 const productRouter = express.Router();
-
+//adminMiddleware,
 productRouter.get("/", getProduct);
 productRouter.get("/:id", getSingleProduct);
-productRouter.post("/", adminMiddleware, postProduct);
+productRouter.post("/",  postProduct);
 productRouter.patch("/:id", adminMiddleware, updateProduct);
 productRouter.delete("/:id", adminMiddleware, deleteProduct);
 

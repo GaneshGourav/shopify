@@ -23,6 +23,9 @@ const adminSchema = mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    code: {
+      type: String,
+    },
   },
   {
     timestamps: true,

@@ -13,6 +13,10 @@ const productSchema = mongoose.Schema({
   total_rating: { type: Number, default: 0 },
   sizes: { type: [Number | String], required: true },
   quantity: { type: Number, required: true },
+  pattern:{type:String,required:true},
+  fitType:{type:String,required:true},
+  sleeveType:{type:String,required:true},
+  matterial:{type:String,required:true},
 });
 
 const ProductModel = mongoose.model("Products", productSchema);
